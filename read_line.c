@@ -85,3 +85,15 @@ ssize_t read_line(esh_t *data)
 	return (r);
 }
 
+/**
+ * sigintHandler - blocks the  ctrl-C command
+ * @sig_num: a signal number
+ *
+ * Return: void
+ */
+void sigintHandler(__attribute__((unused)) int sig_num)
+{
+	_puts("\n");
+	_puts("$ ");
+	_putchar(FLUSH_BUFFER);
+}
