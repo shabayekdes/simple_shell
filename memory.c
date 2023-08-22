@@ -30,3 +30,27 @@ int safely_free_pointer(void **ptr)
 	}
 	return (0);
 }
+
+/**
+ * free_var_list - frees all nodes in the  list
+ * @head_ptr: address of pointer to head node
+ *
+ * Return: void
+ */
+void free_var_list(var_t **head_ptr)
+{
+	var_t *node, *next_node, *head;
+
+	if (!head_ptr || !*head_ptr)
+		return;
+	head = *head_ptr;
+	node = head;
+	while (node)
+	{
+		next_node = node->next;
+		free(node->str);
+		free(node);
+		node = next_node;
+	}
+	*head_ptr = NULL;
+}
