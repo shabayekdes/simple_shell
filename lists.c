@@ -48,3 +48,21 @@ var_t *add_node_end(var_t **head, const char *str, int num)
 		*head = new_node;
 	return (new_node);
 }
+
+/**
+ * list_len - find length of linked list
+ * @h: first node pointer
+ *
+ * Return: size of list
+ */
+size_t list_len(const var_t *h)
+{
+	size_t i = 0;
+
+	while (h)
+	{
+		h = h->next;
+		i++;
+	}
+	return (i);
+}
