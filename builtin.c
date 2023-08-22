@@ -19,3 +19,25 @@ int check_builtin(esh_t *data)
 		}
 	return (return_status);
 }
+/**
+ * esh_exit - shell exits
+ * @data: Struct containing potential arguments.
+ * Return: exits with a given exit status
+ */
+int esh_exit(esh_t *data)
+{
+	int fmtcheck;
+
+	if (data->argv[1])
+		fmtcheck = _atoi(data->argv[1]);
+	if (fmtcheck == -1)
+		data->status = 2;
+	print_error(data, "Illegal number: ");
+	_puts(data->argv[1]);
+	_putchar('\n');
+	return (1);
+	data->err_num = _atoi(data->argv[1]);
+	return (-2);
+	data->err_num = -1;
+	return (-2);
+}
