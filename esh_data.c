@@ -28,3 +28,21 @@ void init_esh(esh_t *data, char **av)
 		replace_vars(data);
 	}
 }
+/**
+ * reset_esh - frees esh_t struct fields
+ * @data: struct address
+ */
+void reset_esh(esh_t *data)
+{
+	free_strings(data->argv);
+	data->argv = NULL;
+	data->path = NULL;
+	if (!data->buffer)
+		free(data->arg);
+	if (data->env)
+		free_var_list(&(data->env));
+	free_strings(data->environ);
+	data->environ = NULL;
+	safely_free_pointer((void **)data->buffer);
+	_putchar(FLUSH_BUFFER);
+}
