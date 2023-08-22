@@ -27,3 +27,19 @@ int _atoi(char *s)
 	return (result);
 }
 
+/**
+ * print_error - print error message
+ * @data: parameter and return info struct
+ * @estr: string contain error type
+ * Return: 0 if no numbers in string or -1 on error or converted number
+ */
+void print_error(esh_t *data, char *estr)
+{
+	_puts(data->esh_name);
+	_puts(": ");
+	print_decimal(data->line_count);
+	_puts(": ");
+	_puts(data->argv[0]);
+	_puts(": ");
+	_puts(estr);
+}
