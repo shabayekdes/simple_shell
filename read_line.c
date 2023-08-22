@@ -5,7 +5,6 @@
  * @data: parameter
  * @buf: address of buffer
  * @len: address of len
- *
  * Return: readden bytes
  */
 ssize_t read_input_buffer(esh_t *data, char **buf, size_t *len)
