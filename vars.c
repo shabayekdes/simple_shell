@@ -104,3 +104,16 @@ int replace_vars(esh_t *data)
 	}
 	return (0);
 }
+
+/**
+ * replace_string - function for replacing string
+ * @old: old string address
+ * @new: new string
+ * Return: 1 if replaced or 0
+ */
+int replace_string(char **old, char *new)
+{
+	free(*old);
+	*old = new;
+	return (1);
+}
