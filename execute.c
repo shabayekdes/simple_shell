@@ -86,3 +86,20 @@ void execute_command(esh_t *data)
 				print_error(data, "Permission denied\n");
 	}
 }
+
+/**
+ * is_executable - check if file is an executable
+ * @path: the path to a file
+ * Return: 1 if true, 0 otherwise
+ */
+int is_executable(char *path)
+{
+	struct stat st;
+
+	if (!path || stat(path, &st))
+		return (0);
+	if (st.st_mode & S_IFREG)
+		return (1);
+
+	return (0);
+}
