@@ -41,3 +41,16 @@ char *_getenv(esh_t *data, const char *name)
 
 	return (NULL);
 }
+
+/**
+ * get_environ - returns string array copy of environ
+ * @data: Structure containing potential arguments.
+ * Return: 0
+ */
+char **get_environ(esh_t *data)
+{
+	if (!data->environ)
+		data->environ = list_to_strings(data->env);
+
+	return (data->environ);
+}
