@@ -46,3 +46,12 @@ void reset_esh(esh_t *data)
 	safely_free_pointer((void **)data->buffer);
 	_putchar(FLUSH_BUFFER);
 }
+/**
+ * prompt - write prompt
+ */
+void prompt(void)
+{
+	if (isatty(STDIN_FILENO))
+		_puts("$ ");
+	_putchar(FLUSH_BUFFER);
+}
