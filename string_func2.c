@@ -34,3 +34,23 @@ char *_strcat(char *dest, char *src)
 	return (ret);
 }
 
+/**
+ * dup_chars - duplicates characters
+ * @path_str: the PATH string
+ * @start: starting index
+ * @stop: stopping index
+ *
+ * Return: pointer to new buffer
+ */
+char *dup_chars(char *path_str, int start, int stop)
+{
+	static char buf[1024];
+	int i = 0, k = 0;
+
+	for (k = 0, i = start; i < stop; i++)
+		if (path_str[i] != ':')
+			buf[k++] = path_str[i];
+	buf[k] = 0;
+	return (buf);
+}
+
