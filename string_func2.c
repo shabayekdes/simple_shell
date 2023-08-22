@@ -54,3 +54,24 @@ char *dup_chars(char *path_str, int start, int stop)
 	return (buf);
 }
 
+/**
+ * _strcmp - performs lexicographic comparison of two strange.
+ * @first: the first strange
+ * @second: the second strange
+ * Return: negative if first < second,
+ *		positive if first > second, zero if first == second
+ */
+int _strcmp(char *first, char *second)
+{
+	while (*first && *second)
+	{
+		if (*first != *second)
+			return (*first - *second);
+		first++;
+		second++;
+	}
+	if (*first == *second)
+		return (0);
+	else
+		return (*first < *second ? -1 : 1);
+}
