@@ -18,3 +18,26 @@ int esh_env(esh_t *data)
 
 	return (0);
 }
+
+/**
+ * _getenv - gets value of environ variable
+ * @data: Structure containing arguments.
+ * @name: env name
+ *
+ * Return: value
+ */
+char *_getenv(esh_t *data, const char *name)
+{
+	var_t *node = data->env;
+	char *p;
+
+	while (node)
+	{
+		p = starts_with(node->str, name);
+		if (p && *p)
+			return (p);
+		node = node->next;
+	}
+
+	return (NULL);
+}
