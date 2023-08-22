@@ -68,3 +68,39 @@ void handle_chain(esh_t *data, char *buf, size_t *p, size_t i, size_t len)
 	*p = j;
 }
 
+/**
+ * replace_vars - replacing vars in tokenized string
+ * @data: struct parameter
+ * Return: 1 if replaced or 0
+ */
+int replace_vars(esh_t *data)
+{
+	int i = 0;
+	var_t *node;
+
+	for (i = 0; data->argv[i]; i++)
+	{
+		if (data->argv[i][0] != '$' || !data->argv[i][1])
+			continue;
+
+		if (!_strcmp(data->argv[i], "$?"))
+		{
+			replace_string(&(data->argv[i]),
+					_strdup(convert_number(data->status, 10)));
+			continue;
+		}
+		if (!_strcmp(data->argv[i], "$$"))
+		{
+			replace_string(&(data->argv[i]), _strdup(convert_number(getpid(), 10)));
+			continue;
+		}
+		node = node_starts_with(data->env, &data->argv[i][1], '=');
+		if (node)
+		{
+			replace_string(&(data->argv[i]), _strdup(_strchr(node->str, '=') + 1));
+			continue;
+		}
+		replace_string(&data->argv[i], _strdup(""));
+	}
+	return (0);
+}
