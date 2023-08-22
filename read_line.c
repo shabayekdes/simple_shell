@@ -37,3 +37,51 @@ ssize_t read_input_buffer(esh_t *data, char **buf, size_t *len)
 	return (r);
 }
 
+/**
+ * read_line - gets a line
+ * @data: parameter
+ *
+ * Return: read bytes
+ */
+ssize_t read_line(esh_t *data)
+{
+	static char *buf;
+	static size_t i, j, len;
+	ssize_t r = 0;
+	char **buf_p, *p;
+
+	data->arg = NULL;
+	buf_p = &(data->arg);
+
+	_putchar(FLUSH_BUFFER);
+	r = read_input_buffer(data, &buf, &len);
+	if (r == -1)
+		return (-1);
+	if (len)
+	{
+		j = i;
+		p = buf + i;
+
+		handle_chain(data, buf, &j, i, len);
+		while (j < len)
+		{
+			if (detect_chain_delimiter(data, buf, &j))
+				break;
+			j++;
+		}
+
+		i = j + 1;
+		if (i >= len)
+		{
+			i = len = 0;
+			data->buffer_type = 0;
+		}
+
+		*buf_p = p;
+		return (_strlen(p));
+	}
+
+	*buf_p = buf;
+	return (r);
+}
+
