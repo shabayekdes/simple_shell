@@ -102,3 +102,25 @@ char **list_to_strings(var_t *head)
 	strs[i] = NULL;
 	return (strs);
 }
+
+/**
+ * node_starts_with - returns node starts with prefix
+ * @node: list head pointer
+ * @prefix: string to match
+ * @c: the next character after prefix to match
+ *
+ * Return: match node or null
+ */
+var_t *node_starts_with(var_t *node, char *prefix, char c)
+{
+	char *p = NULL;
+
+	while (node)
+	{
+		p = starts_with(node->str, prefix);
+		if (p && ((c == -1) || (*p == c)))
+			return (node);
+		node = node->next;
+	}
+	return (NULL);
+}
