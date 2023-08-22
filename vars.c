@@ -35,3 +35,36 @@ int detect_chain_delimiter(esh_t *data, char *buf, size_t *p)
 	return (1);
 }
 
+/**
+ * handle_chain - checks if continue chaining based on last status
+ * @data: parameter struct
+ * @buf: char buffer
+ * @p: address of current position in buf
+ * @i: starting position in buf
+ * @len: length of buf
+ * Return: Void
+ */
+void handle_chain(esh_t *data, char *buf, size_t *p, size_t i, size_t len)
+{
+	size_t j = *p;
+
+	if (data->buffer_type == 2)
+	{
+		if (data->status)
+		{
+			buf[i] = 0;
+			j = len;
+		}
+	}
+	if (data->buffer_type == 1)
+	{
+		if (!data->status)
+		{
+			buf[i] = 0;
+			j = len;
+		}
+	}
+
+	*p = j;
+}
+
