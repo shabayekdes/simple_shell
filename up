@@ -1,5 +1,0 @@
-#!/bin/zsh
-git add .
-read -r "commet" commet
-git commit -m "$commet"
-git push
