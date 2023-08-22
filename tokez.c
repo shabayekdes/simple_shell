@@ -49,4 +49,16 @@ char **_split_str(char *ss, char *meter)
 	return (str);
 }
 
-
+/**
+ * is_delimiter - checks if character is a delimeter
+ * @ch: the char to check
+ * @dlm: the delimeter string
+ * Return: 1 if true, 0 if false
+ */
+int is_delimiter(char ch, char *dlm)
+{
+	while (*dlm)
+		if (*dlm++ == ch)
+			return (1);
+	return (0);
+}
