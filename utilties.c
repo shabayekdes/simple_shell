@@ -113,3 +113,20 @@ char *convert_number(long int num, int base)
 		*--ptr = sign;
 	return (ptr);
 }
+
+/**
+ * remove_comments - replaces first instance of '#' with '\0'
+ * @str: address of the string
+ * Return: 0;
+ */
+void remove_comments(char *str)
+{
+	int i;
+
+	for (i = 0; str[i] != '\0'; i++)
+		if (str[i] == '#' && (!i || str[i - 1] == ' '))
+		{
+			str[i] = '\0';
+			break;
+		}
+}
