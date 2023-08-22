@@ -43,3 +43,39 @@ void print_error(esh_t *data, char *estr)
 	_puts(": ");
 	_puts(estr);
 }
+
+/**
+ * print_decimal - function prints base 10 numbers
+ * @input: input
+ *
+ * Return: the number of characters that be printed
+ */
+int print_decimal(int input)
+{
+	int (*__putchar)(char) = _putchar;
+	int i, count = 0;
+	unsigned int _abs_, current;
+
+	if (input < 0)
+	{
+		_abs_ = -input;
+		__putchar('-');
+		count++;
+	}
+	else
+		_abs_ = input;
+	current = _abs_;
+	for (i = 1000000000; i > 1; i /= 10)
+	{
+		if (_abs_ / i)
+		{
+			__putchar('0' + current / i);
+			count++;
+		}
+		current %= i;
+	}
+	__putchar('0' + current);
+	count++;
+
+	return (count);
+}
