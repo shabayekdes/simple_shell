@@ -50,8 +50,6 @@ int esh_cd(esh_t *data)
  */
 int esh_exit(esh_t *data)
 {
-	int fmtcheck;
-
 	if (data->argv[1])
 	{
 		data->err_num = _atoi(data->argv[1]);
