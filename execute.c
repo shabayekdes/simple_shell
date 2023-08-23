@@ -44,7 +44,7 @@ char *find_path(char *path_str, char *command)
 
 /**
  * execute_command - search for a command in PATH
- * @info: parameter and return struct
+ * @data: parameter and return struct
  * Return: void
  */
 void execute_command(esh_t *data)

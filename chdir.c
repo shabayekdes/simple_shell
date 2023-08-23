@@ -43,3 +43,28 @@ int esh_cd(esh_t *data)
 
 	return (0);
 }
+/**
+ * esh_exit - shell exits
+ * @data: Struct containing potential arguments.
+ * Return: exits with a given exit status
+ */
+int esh_exit(esh_t *data)
+{
+	int fmtcheck;
+
+	if (data->argv[1])
+	{
+		data->err_num = _atoi(data->argv[1]);
+		if (data->err_num == -1)
+		{
+			data->status = 2;
+			print_error(data, "Illegal number: ");
+			_puts(data->argv[1]);
+			_putchar('\n');
+			return (1);
+		}
+		return (-3);
+	}
+	data->err_num = -1;
+	return (-2);
+}
